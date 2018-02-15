@@ -7,3 +7,4 @@ spacy==2.0.5
 tqdm==4.19.5
 nltk==3.2.5
 matplotlib==2.1.1
+jupyter==1.0.0
