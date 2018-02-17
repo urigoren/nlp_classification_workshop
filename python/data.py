@@ -1,5 +1,6 @@
 import os, re
 import pandas as pd
+from tqdm import tqdm
 
 def listFiles():
     return [f for f in os.listdir("../data") if f.endswith(".txt")]
@@ -42,13 +43,33 @@ def preprocessed():
     X = []
     y = []
     digits = re.compile(r"\d[\d\.\$]*")
-    not_allowed = re.compile(r"[^\s\w<>_]")
+    not_allowed = re.compile(r"[^\s\w<>]")
     clean = lambda text: not_allowed.sub("", digits.sub("<NUM>",text.lower()))
     for fname in listFiles():
         if fname.find("-")<0:
             continue
         tag, ind = fname.split("-", 1)
         body = clean(readFile(fname))
+        y.append(tag)
+        X.append(body)
+    return (X,y)
+
+
+def stemmed():
+    import nltk
+    from nltk.stem.porter import PorterStemmer
+    porter = PorterStemmer()
+    X = []
+    y = []
+    punc = re.compile(r"[\.,;\(\)\s]+")
+    not_allowed = re.compile(r"[^\s\w]")
+    clean = lambda text: not_allowed.sub("", punc.sub(" ",text.lower()))
+    for fname in tqdm(listFiles()):
+        if fname.find("-")<0:
+            continue
+        tag, ind = fname.split("-", 1)
+        body = clean(readFile(fname))
+        body = " ".join([porter.stem(w) for w in body.split()])
         y.append(tag)
         X.append(body)
     return (X,y)
