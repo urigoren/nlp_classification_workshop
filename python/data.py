@@ -1,6 +1,7 @@
 import os, re
 import pandas as pd
 from tqdm import tqdm
+import pickle
 
 def listFiles():
     return [f for f in os.listdir("../data") if f.endswith(".txt")]
@@ -56,13 +57,19 @@ def preprocessed():
 
 
 def stemmed():
+    if os.path.exists("../data/stemmed_x.pickle"):
+        with open("../data/stemmed_x.pickle", "rb") as f:
+            X = pickle.load(f)
+        with open("../data/stemmed_y.pickle", "rb") as f:
+            y = pickle.load(f)
+        return (X,y)
     import nltk
     from nltk.stem.porter import PorterStemmer
     porter = PorterStemmer()
     X = []
     y = []
     punc = re.compile(r"[\.,;\(\)\s]+")
-    not_allowed = re.compile(r"[^\s\w]")
+    not_allowed = re.compile(r"[^\sa-z]")
     clean = lambda text: not_allowed.sub("", punc.sub(" ",text.lower()))
     for fname in tqdm(listFiles()):
         if fname.find("-")<0:
@@ -72,4 +79,8 @@ def stemmed():
         body = " ".join([porter.stem(w) for w in body.split()])
         y.append(tag)
         X.append(body)
+    with open("../data/stemmed_x.pickle", "wb") as f:
+        pickle.dump(X, f)
+    with open("../data/stemmed_y.pickle", "wb") as f:
+        pickle.dump(y, f)
     return (X,y)
