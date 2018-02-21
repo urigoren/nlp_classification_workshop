@@ -4,9 +4,11 @@ from tqdm import tqdm
 import pickle
 
 def listFiles():
+    """Returns a list of all training data in the data/ folder"""
     return [f for f in os.listdir("../data") if f.endswith(".txt")]
 
 def readFile(fname):
+    """Given a file name `fname` or a list of filenames, returns its content"""
     if type(fname) == str:
         try:
             with open("../data/"+fname, 'r') as f:
@@ -20,11 +22,16 @@ def readFile(fname):
         raise TypeError("fname should be a string or a list of strings")
 
 def getIterator():
+    """Iterate over all training files amd get their content"""
     for fname in listFiles():
         tag = fname.split("-", 1)[0]
         yield tag, readFile(fname)
 
 def asDataFrame(vectorizer=None):
+    """
+    Return a pandas DataFrame of all files,
+    If a vectorizer function is passed, apply it on the textual data
+    """
     ret = []
     if vectorizer is None:
         cols = ["num", "file", "tag"]
@@ -41,6 +48,9 @@ def asDataFrame(vectorizer=None):
     return pd.DataFrame(ret, columns=cols).set_index("num")
 
 def preprocessed():
+    """
+    Return the training data and label, after replacing numbers with the <NUM> token, and removing non alpha numeric characters
+    """
     X = []
     y = []
     digits = re.compile(r"\d[\d\.\$]*")
@@ -57,6 +67,7 @@ def preprocessed():
 
 
 def stemmed():
+    """Apply Porter stemming on all documents in the training data, and return training data and label"""
     if os.path.exists("../data/stemmed_x.pickle"):
         with open("../data/stemmed_x.pickle", "rb") as f:
             X = pickle.load(f)
