@@ -11,8 +11,8 @@ def readFile(fname):
     """Given a file name `fname` or a list of filenames, returns its content"""
     if type(fname) == str:
         try:
-            with open("../data/"+fname, 'r') as f:
-                data  = f.read()
+            with open("../data/"+fname, 'rb') as f:
+                data  = f.read().decode("utf8", "ignore")
         except:
             data = None
         return data
