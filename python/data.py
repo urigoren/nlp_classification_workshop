@@ -5,7 +5,7 @@ import pickle
 
 def listFiles():
     """Returns a list of all training data in the data/ folder"""
-    return [f for f in os.listdir("../data") if f.endswith(".txt")]
+    return [f for f in os.listdir("../data") if f.endswith(".txt") and fname.find("-")>0]
 
 def readFile(fname):
     """Given a file name `fname` or a list of filenames, returns its content"""
@@ -57,8 +57,6 @@ def preprocessed():
     not_allowed = re.compile(r"[^\s\w<>]")
     clean = lambda text: not_allowed.sub("", digits.sub("<NUM>",text.lower()))
     for fname in listFiles():
-        if fname.find("-")<0:
-            continue
         tag, ind = fname.split("-", 1)
         body = clean(readFile(fname))
         y.append(tag)
