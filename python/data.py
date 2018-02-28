@@ -5,7 +5,7 @@ import pickle
 
 def listFiles():
     """Returns a list of all training data in the data/ folder"""
-    return [f for f in os.listdir("../data") if f.endswith(".txt") and fname.find("-")>0]
+    return [f for f in os.listdir("../data") if f.endswith(".txt") and f.find("-")>0]
 
 def readFile(fname):
     """Given a file name `fname` or a list of filenames, returns its content"""
