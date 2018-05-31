@@ -1,5 +1,5 @@
-Copy the files from:
+Download the files from:
 
-https://drive.google.com/drive/folders/19-0fVP0MiqBA8CvdBLVq-VBlOFpj6me5
+http://goren.ml/pdnlp
 
-To this folder
+And save them in this folder
