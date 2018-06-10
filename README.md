@@ -18,6 +18,5 @@ Anaconda takes care of all of these
 
  1.  `data.zip` - The raw contracts, classified by their filename
  1.  `stemmed.zip` - The contracts after preprocessing and stemming (here to save you time)
- 1.  `w2v.pickle` - Word2Vec model trained on the data
+ 1.  `w2v.pickle` - Word2Vec model trained on the data (`gensim` model)
 
-We would like to thank [LegalHive](https://www.legalhive.net) for providing the labelled contracts for the PyData workshop.
