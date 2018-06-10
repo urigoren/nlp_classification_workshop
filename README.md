@@ -1,9 +1,12 @@
 # NLP classification workshop for beginners
 ## Prerequisites
  1.  Python 3.6 installed
+ 1.  Pip (`curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python get-pip.py`)
  1.  Jupyter notebook
 
-Anaconda takes care of all of these
+## Recommended software for Windows users
+ 1. Anaconda: https://www.anaconda.com/download/#windows
+ 1. cmder: https://github.com/cmderdev/cmder/releases/download/v1.3.6/cmder.zip
 
 ## Installation steps
 
@@ -19,4 +22,5 @@ Anaconda takes care of all of these
  1.  `data.zip` - The raw contracts, classified by their filename
  1.  `stemmed.zip` - The contracts after preprocessing and stemming (here to save you time)
  1.  `w2v.pickle` - Word2Vec model trained on the data (`gensim` model)
+
 
