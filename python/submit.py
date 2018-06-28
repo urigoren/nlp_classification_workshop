@@ -4,6 +4,7 @@ import json
 def test_accuracy(user, test_data):
     """Submits a test data set to the pydata server, and returns accuracy"""
     try:
+        test_data = {str(k).lower().replace(".txt", ""):str(v).lower().strip() for k,v in test_data.items()}
         data = parse.urlencode({"user":user, "submission": json.dumps(test_data)}).encode()
         req =  request.Request("http://pydata.org.il/pdnlp/", data=data)
         resp = request.urlopen(req)
