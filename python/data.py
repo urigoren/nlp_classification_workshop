@@ -3,6 +3,11 @@ import pandas as pd
 from tqdm import tqdm
 import pickle
 
+def listTestFiles():
+    """Returns a list of all test data in the data/ folder"""
+    return [f for f in os.listdir("../data") if f.endswith(".txt") and f.split(".")[0].isdigit()]
+
+
 def listFiles():
     """Returns a list of all training data in the data/ folder"""
     return [f for f in os.listdir("../data") if f.endswith(".txt") and f.find("-")>0]
