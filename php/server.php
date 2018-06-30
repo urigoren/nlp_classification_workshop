@@ -3,7 +3,7 @@ if (array_key_exists("submission", $_REQUEST) && array_key_exists("user",$_REQUE
 {
         $user=preg_replace("/[^a-zA-Z0-9_]+/", "", $_REQUEST["user"]);
         $submission=json_decode($_REQUEST["submission"],true);
-        $truth=json_decode(file_get_contents("truth.data"),true);
+        $truth=json_decode(file_get_contents("holdout.data"),true);
         $n=0;$score=0;
         foreach($truth as $x=>$y) {
             $n +=1;
