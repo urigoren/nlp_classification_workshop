@@ -11,9 +11,9 @@ Do not be offended, we love python, but we are also pragmatic and choose the too
 
 ## Deployment
 1. Create a `{"example":"label"}` mapping, and save it in `json` format as `truth.data`
-1. Upload both `truth.data` and `server.php` to your website root directory.
+1. Upload both `holdout.data` and `server.php` to your website root directory.
 
 ## Usage
 1. A request with both an `user` and a `submission` field is recorded.
-1. The format of the `submission` field should be a `json` mapping of `{"example":"label"}` (same as `truth.data`)
+1. The format of the `submission` field should be a `json` mapping of `{"example":"label"}` (same as `holdout.data`)
 1. Any other request, is routed to the leaderboard.
