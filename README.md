@@ -22,5 +22,6 @@
  1.  `data.zip` - The raw contracts, classified by their filename
  1.  `stemmed.zip` - The contracts after preprocessing and stemming (here to save you time)
  1.  `w2v.pickle` - Word2Vec model trained on the data (`gensim` model)
+ 1.  `test_data.zip` - Unlabeled contracts, for those who would like to participate in the competition ( http//pydata.org.il/pdnlp/ )
 
 
