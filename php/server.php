@@ -31,7 +31,8 @@ else // Show leaderboard
         }
         arsort($scores);
         // Format the leaderboard
-        echo "<html><body><div align=\"center\"><h1>Leader board</h1>";
+        echo "<html><head><meta http-equiv=\"refresh\" content=\"30\" /></head>";
+        echo "<body><div align=\"center\"><h1>Leader board</h1>";
         echo "<table border =\"0\">";
         echo "<tr><th>User</th><th>Accuracy</th></tr>";
         foreach($scores as $user=>$score) {
