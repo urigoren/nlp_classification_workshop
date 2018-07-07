@@ -1,9 +1,11 @@
 <?php
 if (array_key_exists("submission", $_REQUEST) && array_key_exists("user",$_REQUEST)) //Record submission
 {
+        // See submission client: https://github.com/urigoren/nlp_classification/blob/master/python/submit.py
         $user=preg_replace("/[^a-zA-Z0-9_]+/", "", $_REQUEST["user"]);
         $submission=json_decode($_REQUEST["submission"],true);
         $truth=json_decode(file_get_contents("holdout.data"),true);
+        // Calculate the accuracy of the submission
         $n=0;$score=0;
         foreach($truth as $x=>$y) {
             $n +=1;
@@ -12,18 +14,23 @@ if (array_key_exists("submission", $_REQUEST) && array_key_exists("user",$_REQUE
         $score /= $n;
         $submission["score"]=$score;
         $submission["user"]=$user;
-        file_put_contents($user.".json",json_encode($submission));
+        // Save submission as json file
+        file_put_contents("$user.json",json_encode($submission));
         echo $score;
 }
 else // Show leaderboard
 {
-        $scores=array_reduce(array_map(function ($f) {
-                $json= json_decode(file_get_contents($f),true);
-                return array(str_replace(".json","",$f)=>$json["score"]);
-        },array_filter(scandir('.'), function ($x) {
-                return substr($x,-5)=='.json';
-        })),array_merge,array());
+        // flat files to "user"=>"score" array
+        $scores = array();
+        $files = scandir('.');
+        foreach ($files as $index=>$fname) {
+                if (substr($fname,-5)=='.json') {
+                        $json= json_decode(file_get_contents($fname),true);
+                        $scores[$json["user"]]=$json["score"];
+                }
+        }
         arsort($scores);
+        // Format the leaderboard
         echo "<html><body><div align=\"center\"><h1>Leader board</h1>";
         echo "<table border =\"0\">";
         echo "<tr><th>User</th><th>Accuracy</th></tr>";
