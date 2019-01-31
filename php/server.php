@@ -32,12 +32,38 @@ else // Show leaderboard
         arsort($scores);
         // Format the leaderboard
         echo "<html><head><meta http-equiv=\"refresh\" content=\"30\" /></head>";
-        echo "<body><div align=\"center\"><h1>Leader board</h1>";
-        echo "<table border =\"0\">";
-        echo "<tr><th>User</th><th>Accuracy</th></tr>";
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>NLP Classification Workshop</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+  <meta http-equiv="refresh" content="30" />
+</head>
+<body><div class="container" align="center">
+<h1>Leader board</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Submission_id</th>
+        <th>Accuracy</th>
+      </tr>
+    </thead>
+    <tbody>
+<?php
         foreach($scores as $user=>$score) {
                 echo "<tr><th>$user</th><td>$score</td></tr>";
         }
-        echo "</table></div></body></html>";
+?>
+</tbody></table>
+<br />
+Made by <a href="http://www.goren4u.com">Uri Goren</a>.
+</div></body></html>
+<?php
 }
 ?>
