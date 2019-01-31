@@ -6,7 +6,7 @@ def test_accuracy(user, test_data):
     try:
         test_data = {str(k).lower().replace(".txt", ""):str(v).lower().strip() for k,v in test_data.items()}
         data = parse.urlencode({"user":user, "submission": json.dumps(test_data)}).encode()
-        req =  request.Request("http://pydata.org.il/pdnlp/", data=data)
+        req =  request.Request("http://goren4u.com/nlp_classification/", data=data)
         resp = request.urlopen(req)
         return float(resp.read().decode("utf8"))
     except:
