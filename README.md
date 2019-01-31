@@ -25,3 +25,5 @@
  1.  `test_data.zip` - Unlabeled contracts, for those who would like to participate in the competition ( http://goren4u.com/nlp_classification/ )
 
 
+For more details, contact me at [goren.ml](http://www.goren.ml) .
+
