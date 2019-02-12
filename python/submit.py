@@ -9,7 +9,8 @@ def test_accuracy(user, test_data):
         req =  request.Request("http://goren4u.com/nlp_classification/", data=data)
         resp = request.urlopen(req)
         return float(resp.read().decode("utf8"))
-    except:
+    except Exception as e:
+        print (str(e))
         return None
 
 if __name__ == "__main__":
